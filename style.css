@@ -1,0 +1,29 @@
+
+body {
+  background-color: #2f2f2f; /* Thunder gray */
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+.container {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 2rem;
+  border-radius: 10px;
+  margin-top: 2rem;
+}
+.section-white {
+  background-color: #fff;
+  color: #000;
+  padding: 2rem;
+  border-radius: 10px;
+  margin: 2rem 0;
+}
+h1, h2, h3 {
+  color: #ffc107;
+}
+a {
+  color: #17d4fc;
+}
+footer {
+  background-color: #fff;
+  color: #000;
+}

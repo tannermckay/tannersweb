@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Quote Game</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { text-align: center; padding: 2rem; }
+    #quote { font-size: 1.5rem; margin-bottom: 1rem; }
+    input { padding: 0.5rem; font-size: 1rem; width: 50%; }
+    button { padding: 0.5rem 1rem; font-size: 1rem; margin-left: 0.5rem; }
+    #result { margin-top: 1rem; font-size: 1.2rem; }
+  </style>
+</head>
+<body>
+  <h1>Guess the Movie Quote</h1>
+  <div id="quote">Loading...</div>
+  <input type="text" id="userGuess" placeholder="Your guess...">
+  <button onclick="submitGuess()">Submit</button>
+  <div id="result"></div>
+  <div id="score" class="mt-3"></div>
+
+  <script>
+    const quotes = [
+      { quote: "Here's looking at you, kid.", movie: "Casablanca" },
+      { quote: "You're gonna need a bigger boat.", movie: "Jaws" },
+      { quote: "Life is like a box of chocolates.", movie: "Forrest Gump" },
+      { quote: "I'll be back.", movie: "The Terminator" },
+      { quote: "May the Force be with you.", movie: "Star Wars" }
+    ];
+    let current = 0;
+    let score = 0;
+
+    function loadQuote() {
+      if (current >= quotes.length) {
+        document.getElementById('quote').textContent = 'Game over!';
+        document.getElementById('score').textContent = `Final Score: ${score}/${quotes.length}`;
+        return;
+      }
+      document.getElementById('quote').textContent = quotes[current].quote;
+      document.getElementById('userGuess').value = '';
+      document.getElementById('result').textContent = '';
+    }
+
+    function submitGuess() {
+      const guess = document.getElementById('userGuess').value.toLowerCase();
+      const answer = quotes[current].movie.toLowerCase();
+      if (guess.includes(answer) || answer.includes(guess)) {
+        document.getElementById('result').textContent = '✅ Correct!';
+        score++;
+      } else {
+        document.getElementById('result').textContent = `❌ Nope! It was "${quotes[current].movie}"`;
+      }
+      current++;
+      document.getElementById('score').textContent = `Score: ${score}/${current}`;
+      setTimeout(loadQuote, 1500);
+    }
+
+    loadQuote();
+  </script>
+</body>
+</html>
